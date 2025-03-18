@@ -1,0 +1,65 @@
+<nav class="bg-green-600 text-white p-4 shadow-md">
+  <div class="container mx-auto flex justify-between items-center">
+    <!-- Logo -->
+    <a href="#" class="text-2xl font-bold">MyWebsite</a>
+
+    <!-- Menu for Large Screens -->
+    <ul class="hidden md:flex gap-6">
+      <li><a href="#" class="hover:text-gray-300 transition">Home</a></li>
+      <li><a href="#" class="hover:text-gray-300 transition">About</a></li>
+      <li><a href="#" class="hover:text-gray-300 transition">Contact</a></li>
+    </ul>
+
+    <!-- Buttons (Conditionally Rendered) -->
+    <div class="hidden md:flex gap-4" *ngIf="!isLoggedIn; else userMenu">
+      <a routerLink="/login" class="bg-white text-green-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition">Sign In</a>
+      <a routerLink="/signup" class="bg-gray-800 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-900 transition">Sign Up</a>
+    </div>
+
+    <!-- User Dropdown (Shown when Logged In) -->
+    <ng-template #userMenu>
+      <div class="relative">
+        <button (click)="toggleDropdown()" class="flex items-center gap-2 px-4 py-2">
+          <img [src]="userAvatar" alt="User" class="w-8 h-8 rounded-full">
+          <span>{{ username }}</span>
+        </button>
+
+        <div *ngIf="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md">
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
+          <button (click)="logout()" class="block px-4 py-2 w-full text-left text-red-600 hover:bg-gray-100">
+            Logout
+          </button>
+        </div>
+      </div>
+    </ng-template>
+
+    <!-- Mobile Menu Button -->
+    <button class="md:hidden focus:outline-none" (click)="toggleMenu()">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div *ngIf="menuOpen" class="md:hidden bg-green-700 py-2">
+    <ul class="flex flex-col items-center gap-3">
+      <li><a href="#" class="hover:text-gray-300 transition">Home</a></li>
+      <li><a href="#" class="hover:text-gray-300 transition">About</a></li>
+      <li><a href="#" class="hover:text-gray-300 transition">Contact</a></li>
+
+      <!-- Show Sign In / Sign Up when NOT logged in -->
+      <ng-container *ngIf="!isLoggedIn; else mobileUserMenu">
+        <a routerLink="/login" class="bg-white text-green-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition">Sign In</a>
+        <a routerLink="/signup" class="bg-gray-800 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-900 transition">Sign Up</a>
+      </ng-container>
+
+      <!-- Show Logout when Logged In -->
+      <ng-template #mobileUserMenu>
+        <button (click)="logout()" class="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition">
+          Logout
+        </button>
+      </ng-template>
+    </ul>
+  </div>
+</nav>

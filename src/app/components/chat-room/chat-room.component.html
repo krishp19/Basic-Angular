@@ -1,0 +1,85 @@
+<div class="chat-wrapper">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <mat-card class="sidebar-card">
+      <mat-card-header>
+        <mat-card-title>Friends</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <!-- Search Bar -->
+        <mat-form-field appearance="fill" class="search-bar">
+          <mat-label>Search friends</mat-label>
+          <input matInput [(ngModel)]="searchQuery" (input)="searchFriends()" placeholder="Search friends">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        <mat-list>
+          <mat-list-item *ngFor="let friend of filteredFriends" (click)="selectFriend(friend.name)" [ngClass]="{'selected': friend.name === selectedFriend}">
+            <div class="friend-item">
+              <span class="friend-name">{{ friend.name }}</span>
+              <div class="friend-meta">
+                <span class="friend-last-message">{{ friend.lastMessage }}</span>
+                <span class="friend-timestamp">{{ friend.timestamp }}</span>
+              </div>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Chat Area -->
+  <div class="chat-area">
+    <mat-card class="chat-container">
+      <mat-card-header>
+        <mat-card-title>{{ selectedFriend }}</mat-card-title>
+        <mat-card-subtitle>Chat Room</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content class="message-area">
+        <mat-list>
+          <mat-list-item *ngFor="let message of messages" [ngClass]="message.sender === 'You' ? 'message-right' : 'message-left'">
+            <div class="message-content">
+              <span class="message-sender">{{ message.sender }}</span>: 
+              <span class="message-text">{{ message.text }}</span>
+              <div class="message-meta">
+                <span class="message-timestamp">{{ message.timestamp }}</span>
+                <span class="message-status" [ngClass]="{
+                  'status-read': message.status === 'read',
+                  'status-delivered': message.status === 'delivered',
+                  'status-unseen': message.status === 'unseen'
+                }">
+                  {{ message.status }}
+                </span>
+              </div>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+
+      <mat-card-actions class="input-area">
+        <!-- Emoji, File, and Share Buttons -->
+        <div class="icon-group">
+          <button mat-icon-button (click)="addEmoji()" aria-label="Add emoji">
+            <mat-icon>emoji_emotions</mat-icon>
+          </button>
+          <button mat-icon-button (click)="uploadFile()" aria-label="Upload file">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+          <button mat-icon-button (click)="shareContent()" aria-label="Share content">
+            <mat-icon>share</mat-icon>
+          </button>
+        </div>
+
+        <!-- Input Field with Send Arrow -->
+        <mat-form-field appearance="fill" class="message-input">
+          <mat-label>Type a message</mat-label>
+          <input matInput [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Enter your message">
+          <button mat-icon-button matSuffix (click)="sendMessage()" aria-label="Send message">
+            <mat-icon>send</mat-icon>
+          </button>
+        </mat-form-field>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

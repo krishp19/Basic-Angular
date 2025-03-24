@@ -1,0 +1,120 @@
+mat-toolbar {
+  background-color: white;
+  color: #212121;
+  padding: 0 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+mat-toolbar .container {
+  width: 100%;
+  max-width: 1200px;
+}
+mat-toolbar .logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #212121;
+  transition: color 0.2s ease;
+}
+mat-toolbar .logo:hover {
+  color: #616161;
+}
+mat-toolbar .nav-links .nav-link {
+  color: #212121;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+mat-toolbar .nav-links .nav-link:hover {
+  background-color: #f5f5f5;
+  transform: scale(1.05);
+}
+mat-toolbar .action-button {
+  padding: 0 1.5rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+mat-toolbar .action-button:hover {
+  transform: scale(1.05);
+}
+mat-toolbar .user-menu-container .user-menu-btn {
+  color: #212121;
+  transition: background-color 0.2s ease;
+  padding: 0 1rem;
+}
+mat-toolbar .user-menu-container .user-menu-btn:hover {
+  background-color: #f5f5f5;
+}
+mat-toolbar .user-menu-container .user-menu-btn .user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+mat-toolbar .user-menu-container .user-menu-btn .user-info .username {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+mat-toolbar .user-menu-container .user-menu-btn img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+mat-toolbar mat-menu .px-4.py-2 {
+  color: #212121;
+}
+mat-toolbar mat-menu .menu-item {
+  transition: background-color 0.2s ease;
+}
+mat-toolbar mat-menu .menu-item:hover {
+  background-color: #f5f5f5;
+}
+mat-toolbar mat-menu .logout-btn {
+  color: white;
+}
+mat-toolbar mat-menu .logout-btn[color=warn] {
+  background-color: #d32f2f;
+}
+mat-toolbar mat-menu .logout-btn[color=warn]:hover {
+  background-color: #b71c1c;
+}
+mat-toolbar .mobile-menu-btn {
+  color: #212121;
+}
+mat-toolbar .mobile-menu {
+  position: fixed;
+  top: 64px;
+  right: 0;
+  width: 250px;
+  height: calc(100% - 64px);
+  background-color: white;
+  z-index: 1000;
+  overflow-y: auto;
+}
+mat-toolbar .mobile-menu.open {
+  display: block;
+}
+mat-toolbar .mobile-menu .nav-link, mat-toolbar .mobile-menu .action-button {
+  width: 80%;
+  margin: 0.5rem auto;
+  color: #212121;
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+mat-toolbar .mobile-menu .nav-link:hover, mat-toolbar .mobile-menu .action-button:hover {
+  background-color: #f5f5f5;
+  transform: scale(1.05);
+}
+@media (min-width: 768px) {
+  mat-toolbar .mobile-menu-btn {
+    display: none !important;
+  }
+  mat-toolbar .mobile-menu {
+    display: none !important;
+  }
+}
+@media (max-width: 767px) {
+  mat-toolbar .nav-links, mat-toolbar .hidden.md\\:flex {
+    display: none !important;
+  }
+  mat-toolbar .mobile-menu:not(.open) {
+    display: none;
+  }
+}/*# sourceMappingURL=navbar.component.css.map */

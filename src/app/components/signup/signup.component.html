@@ -1,85 +1,116 @@
+<section class="signup-container">
+  <mat-card class="signup-card">
+    <mat-card-header>
+      <mat-card-title class="title">Sign Up</mat-card-title>
+      <mat-card-subtitle class="subtitle">Create your ChatSphere account</mat-card-subtitle>
+    </mat-card-header>
 
+    <mat-card-content class="content">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form-content">
+        <!-- Name -->
+        <mat-form-field appearance="fill" class="input-field">
+          <mat-label>Full Name</mat-label>
+          <input
+            matInput
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="John Doe"
+          />
+          <mat-error *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched">
+            Name is required (Min: 3 characters)
+          </mat-error>
+        </mat-form-field>
 
-<section class="min-h-screen flex items-center justify-center bg-gray-100">
-  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-    <h2 class="text-3xl font-bold text-center text-gray-800">Sign Up</h2>
-    <p class="text-gray-600 text-center mt-2">Create an account to get started.</p>
+        <!-- Email -->
+        <mat-form-field appearance="fill" class="input-field">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="example@email.com"
+          />
+          <mat-error *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+            Please enter a valid email.
+          </mat-error>
+        </mat-form-field>
 
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="mt-6">
-      <!-- Name -->
-      <div class="mb-4">
-        <label for="name" class="block text-gray-700 font-medium">Full Name</label>
-        <input
-          id="name"
-          type="text"
-          formControlName="name"
-          class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
-          placeholder="John Doe"
-        />
-        <div *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched" class="text-red-500 text-sm">
-          Name is required (Min: 3 characters)
-        </div>
+        <!-- Password -->
+        <mat-form-field appearance="fill" class="input-field">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            id="password"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Enter your password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="togglePassword()"
+            class="toggle-icon"
+          >
+            <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+            Password must be at least 6 characters.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Confirm Password -->
+        <mat-form-field appearance="fill" class="input-field">
+          <mat-label>Confirm Password</mat-label>
+          <input
+            matInput
+            id="confirmPassword"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="confirmPassword"
+            placeholder="Confirm your password"
+          />
+          <mat-error *ngIf="signupForm.hasError('passwordMismatch') && signupForm.get('confirmPassword')?.touched">
+            Passwords do not match.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+        <!-- Submit Button -->
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="signupForm.invalid || isLoading"
+          class="submit-button"
+        >
+          <span *ngIf="!isLoading">Sign Up</span>
+          <mat-spinner *ngIf="isLoading" diameter="24"></mat-spinner>
+        </button>
+      </form>
+
+      <!-- Divider -->
+      <div class="divider">
+        <span>or sign up with</span>
       </div>
 
-      <!-- Email -->
-      <div class="mb-4">
-        <label for="email" class="block text-gray-700 font-medium">Email</label>
-        <input
-          id="email"
-          type="email"
-          formControlName="email"
-          class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
-          placeholder="example@email.com"
-        />
-        <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-red-500 text-sm">
-          Enter a valid email.
-        </div>
+      <!-- Social Login Buttons -->
+      <div class="social-buttons">
+        <button mat-icon-button class="social-button google-button" (click)="googleSignUp()">
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="social-icon" />
+        </button>
+        <button mat-icon-button class="social-button github-button" (click)="githubSignUp()">
+          <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" class="social-icon github-icon" />
+        </button>
       </div>
 
-      <!-- Password -->
-      <div class="mb-4">
-        <label for="password" class="block text-gray-700 font-medium">Password</label>
-        <input
-          id="password"
-          type="password"
-          formControlName="password"
-          class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
-          placeholder="••••••••"
-        />
-        <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-red-500 text-sm">
-          Password must be at least 6 characters.
-        </div>
-      </div>
-
-      <!-- Confirm Password -->
-      <div class="mb-4">
-        <label for="confirmPassword" class="block text-gray-700 font-medium">Confirm Password</label>
-        <input
-          id="confirmPassword"
-          type="password"
-          formControlName="confirmPassword"
-          class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
-          placeholder="••••••••"
-        />
-        <div *ngIf="signupForm.hasError('passwordMismatch')" class="text-red-500 text-sm">
-          Passwords do not match.
-        </div>
-      </div>
-
-      <!-- Submit Button -->
-      <button
-        type="submit"
-        [disabled]="signupForm.invalid"
-        class="w-full bg-green-600 text-white p-3 rounded-lg hover:bg-green-700 transition"
-      >
-        Sign Up
-      </button>
-    </form>
-
-    <p class="text-gray-600 text-center mt-4">
-      Already have an account?
-      <a routerLink="/login" class="text-green-600 font-semibold hover:underline">Login</a>
-    </p>
-  </div>
+      <!-- Sign In Link -->
+      <p class="signin-link">
+        Already have an account? <a routerLink="/signin" class="signin-link-text">Sign In</a>
+      </p>
+    </mat-card-content>
+  </mat-card>
 </section>
-

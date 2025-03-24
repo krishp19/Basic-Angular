@@ -1,0 +1,62 @@
+<div class="form-wrapper">
+  <mat-card class="form-container">
+    <mat-card-header>
+      <mat-card-title>Let’s Hear From You!</mat-card-title>
+      <mat-card-subtitle>Drop us a message—we’re all ears for your thoughts!</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="contactForm" (ngSubmit)="submitForm()">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            formControlName="name"
+            placeholder="Your Name"
+          />
+          <mat-error *ngIf="contactForm.get('name')?.hasError('required')">
+            Name is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            placeholder="Your Email"
+          />
+          <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
+            Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Message</mat-label>
+          <textarea
+            matInput
+            rows="4"
+            formControlName="message"
+            placeholder="Share your thoughts with us..."
+          ></textarea>
+          <mat-error *ngIf="contactForm.get('message')?.hasError('required')">
+            Message is required
+          </mat-error>
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="contactForm.invalid"
+          class="w-full"
+        >
+          Send Your Message Now!
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

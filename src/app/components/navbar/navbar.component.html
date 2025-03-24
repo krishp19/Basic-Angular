@@ -1,65 +1,70 @@
-<nav class="bg-green-600 text-white p-4 shadow-md">
+<!-- Navbar -->
+<mat-toolbar class="shadow-md">
   <div class="container mx-auto flex justify-between items-center">
     <!-- Logo -->
-    <a href="#" class="text-2xl font-bold">MyWebsite</a>
+    <a routerLink="/" class="logo text-2xl font-bold">Shook</a>
 
     <!-- Menu for Large Screens -->
-    <ul class="hidden md:flex gap-6">
-      <li><a href="#" class="hover:text-gray-300 transition">Home</a></li>
-      <li><a href="#" class="hover:text-gray-300 transition">About</a></li>
-      <li><a href="#" class="hover:text-gray-300 transition">Contact</a></li>
-    </ul>
-
-    <!-- Buttons (Conditionally Rendered) -->
-    <div class="hidden md:flex gap-4" *ngIf="!isLoggedIn; else userMenu">
-      <a routerLink="/login" class="bg-white text-green-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition">Sign In</a>
-      <a routerLink="/signup" class="bg-gray-800 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-900 transition">Sign Up</a>
+    <div class="nav-links hidden md:flex items-center gap-6">
+      <a mat-button routerLink="/" class="nav-link">Home</a>
+      <a mat-button routerLink="/chat" class="nav-link">Chats</a>
+      <a mat-button routerLink="/about" class="nav-link">About</a>
+      <a mat-button routerLink="/contact" class="nav-link">Contact</a>
     </div>
 
-    <!-- User Dropdown (Shown when Logged In) -->
-    <ng-template #userMenu>
-      <div class="relative">
-        <button (click)="toggleDropdown()" class="flex items-center gap-2 px-4 py-2">
-          <img [src]="userAvatar" alt="User" class="w-8 h-8 rounded-full">
-          <span>{{ username }}</span>
-        </button>
+    <!-- Buttons or User Menu for Large Screens -->
+    <div class="hidden md:flex items-center gap-4" *ngIf="!isLoggedIn; else userMenu">
+      <a mat-raised-button color="accent" routerLink="/login" class="action-button">Sign In</a>
+      <a mat-raised-button color="warn" routerLink="/signup" class="action-button">Sign Up</a>
+    </div>
 
-        <div *ngIf="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md">
-          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
-          <button (click)="logout()" class="block px-4 py-2 w-full text-left text-red-600 hover:bg-gray-100">
-            Logout
-          </button>
-        </div>
+    <!-- User Menu for Desktop (Shown when Logged In) -->
+    <ng-template #userMenu>
+      <div class="user-menu-container hidden md:block">
+        <button mat-button [matMenuTriggerFor]="desktopMenu" class="user-menu-btn">
+          <div class="user-info flex items-center gap-2">
+            <img [src]="userAvatar" alt="User" class="h-8 w-8 rounded-full">
+            <span class="username">{{ username }}</span>
+          </div>
+        </button>
+        <mat-menu #desktopMenu="matMenu">
+          <a mat-menu-item routerLink="/profile" class="menu-item">Profile</a>
+          <button mat-menu-item color="warn" (click)="logout()" class="logout-btn">Logout</button>
+        </mat-menu>
       </div>
     </ng-template>
 
-    <!-- Mobile Menu Button -->
-    <button class="md:hidden focus:outline-none" (click)="toggleMenu()">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-      </svg>
-    </button>
+    <!-- Mobile Profile Icon and Hamburger Menu (Visible on Mobile) -->
+    <div class="flex items-center gap-2 md:hidden">
+      <div class="user-menu-container" *ngIf="isLoggedIn">
+        <button mat-icon-button [matMenuTriggerFor]="mobileProfileMenu" class="user-menu-btn">
+          <img [src]="userAvatar" alt="User" class="h-8 w-8 rounded-full">
+        </button>
+        <mat-menu #mobileProfileMenu="matMenu">
+          <div class="px-4 py-2 text-center">{{ username }}</div>
+          <a mat-menu-item routerLink="/profile" class="menu-item">Profile</a>
+          <button mat-menu-item color="warn" (click)="logout()" class="logout-btn">Logout</button>
+        </mat-menu>
+      </div>
+      <button mat-icon-button class="mobile-menu-btn" (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
   </div>
 
-  <!-- Mobile Dropdown Menu -->
-  <div *ngIf="menuOpen" class="md:hidden bg-green-700 py-2">
-    <ul class="flex flex-col items-center gap-3">
-      <li><a href="#" class="hover:text-gray-300 transition">Home</a></li>
-      <li><a href="#" class="hover:text-gray-300 transition">About</a></li>
-      <li><a href="#" class="hover:text-gray-300 transition">Contact</a></li>
+  <!-- Mobile Dropdown Menu (Slides from Right) -->
+  <div class="mobile-menu" [class.open]="menuOpen" [@slideInOut]="menuOpen ? 'in' : 'out'">
+    <div class="flex flex-col items-center gap-3 py-2">
+      <a mat-button routerLink="/" class="nav-link">Home</a>
+      <a mat-button routerLink="/chat" class="nav-link">Chats</a>
+      <a mat-button routerLink="/about" class="nav-link">About</a>
+      <a mat-button routerLink="/contact" class="nav-link">Contact</a>
 
       <!-- Show Sign In / Sign Up when NOT logged in -->
-      <ng-container *ngIf="!isLoggedIn; else mobileUserMenu">
-        <a routerLink="/login" class="bg-white text-green-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition">Sign In</a>
-        <a routerLink="/signup" class="bg-gray-800 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-900 transition">Sign Up</a>
+      <ng-container *ngIf="!isLoggedIn">
+        <a mat-raised-button color="accent" routerLink="/login" class="action-button">Sign In</a>
+        <a mat-raised-button color="warn" routerLink="/signup" class="action-button">Sign Up</a>
       </ng-container>
-
-      <!-- Show Logout when Logged In -->
-      <ng-template #mobileUserMenu>
-        <button (click)="logout()" class="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition">
-          Logout
-        </button>
-      </ng-template>
-    </ul>
+    </div>
   </div>
-</nav>
+</mat-toolbar>

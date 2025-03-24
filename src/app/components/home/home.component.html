@@ -1,41 +1,44 @@
-
 <!-- Hero Section -->
-<section class="bg-gray-600 text-white text-center py-16">
-  <div class="container mx-auto">
-    <h1 class="text-5xl font-bold">Welcome to MyWebsite</h1>
-    <p class="text-lg mt-4">Experience the best services with us.</p>
-    <a routerLink="/signup" class="mt-6 inline-block bg-white text-green-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-200">
-      Get Started
-    </a>
+<section class="hero-section">
+  <div class="hero-container">
+    <h1>Welcome to ChatSphere</h1>
+    <p>Connect instantly with friends and communities.</p>
+    <button mat-raised-button color="primary" routerLink="/signup" class="hero-button">
+      Start Chatting
+    </button>
   </div>
 </section>
 
 <!-- Features Section -->
-<section class="container mx-auto py-16 px-4">
-  <h2 class="text-3xl font-bold text-center text-gray-800">Our Features</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-    <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-      <h3 class="text-xl font-semibold text-gray-800">Fast & Reliable</h3>
-      <p class="text-gray-600 mt-2">We ensure quick and efficient services.</p>
-    </div>
-    <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-      <h3 class="text-xl font-semibold text-gray-800">User-Friendly</h3>
-      <p class="text-gray-600 mt-2">Easy to use and accessible for everyone.</p>
-    </div>
-    <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-      <h3 class="text-xl font-semibold text-gray-800">24/7 Support</h3>
-      <p class="text-gray-600 mt-2">We’re here for you anytime, anywhere.</p>
-    </div>
-  </div>
+<section class="features-section">
+  <h2>Why ChatSphere?</h2>
+  <mat-grid-list cols="3" rowHeight="1:1" gutterSize="2rem">
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-title>Real-Time Messaging</mat-card-title>
+        <mat-card-content>Send and receive messages instantly.</mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-title>Group Chats</mat-card-title>
+        <mat-card-content>Create and join conversations with ease.</mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-title>Secure & Private</mat-card-title>
+        <mat-card-content>Your chats are encrypted and safe.</mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </section>
 
 <!-- Call to Action Section -->
-<section class="bg-gray-100 py-12 text-center">
-  <h2 class="text-3xl font-bold text-gray-800">Join Us Today!</h2>
-  <p class="text-lg text-gray-600 mt-2">Sign up now and start exploring amazing features.</p>
-  <button routerLink="/signup" class="mt-6 inline-block bg-green-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-700">
-    Sign Up Now
+<section class="cta-section">
+  <h2>Get Connected Now!</h2>
+  <p>Sign up and start chatting with people worldwide.</p>
+  <button mat-raised-button color="accent" routerLink="/signup" class="cta-button">
+    Join ChatSphere
   </button>
 </section>
-
-

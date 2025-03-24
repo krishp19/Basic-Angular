@@ -1,0 +1,91 @@
+:host .hero-section {
+  background-color: white !important;
+  color: #212121;
+  text-align: center;
+  padding: 4rem 0;
+}
+:host .hero-section .hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+:host .hero-section .hero-container h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #212121;
+}
+:host .hero-section .hero-container p {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: #616161;
+}
+:host .hero-section .hero-container .hero-button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 25px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+:host .hero-section .hero-container .hero-button:hover {
+  transform: scale(1.05);
+}
+
+.features-section {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+}
+.features-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #212121;
+  margin-bottom: 2rem;
+}
+.features-section mat-grid-list mat-grid-tile mat-card {
+  text-align: center;
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.features-section mat-grid-list mat-grid-tile mat-card mat-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #212121;
+}
+.features-section mat-grid-list mat-grid-tile mat-card mat-card-content {
+  color: #616161;
+  margin-top: 0.5rem;
+}
+
+.cta-section {
+  background-color: white;
+  padding: 3rem 0;
+  text-align: center;
+}
+.cta-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #212121;
+  margin-bottom: 0.5rem;
+}
+.cta-section p {
+  font-size: 1.25rem;
+  color: #616161;
+  margin-bottom: 1.5rem;
+}
+.cta-section .cta-button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 25px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.cta-section .cta-button:hover {
+  transform: scale(1.05);
+}/*# sourceMappingURL=home.component.css.map */

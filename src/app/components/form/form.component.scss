@@ -1,0 +1,59 @@
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px); // Adjust height to account for margin-top
+    margin-top: 40px; // Add top margin to create space from the top
+    background-color: #f5f5f5; // Light gray background for contrast
+    padding: 16px; // Padding to avoid edge sticking
+  }
+  
+  .form-container {
+    max-width: 500px;
+    width: 100%;
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  mat-card-header {
+    padding-bottom: 16px;
+  }
+  
+  mat-card-title {
+    color: #374151;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  mat-card-subtitle {
+    color: #6b7280;
+    font-size: 1rem;
+    margin-top: 4px;
+  }
+  
+  mat-form-field {
+    margin-bottom: 16px;
+  }
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  button[mat-raised-button] {
+    background-color: #16a34a;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 8px 0;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[mat-raised-button]:hover:not(:disabled) {
+    background-color: #15803d;
+  }
+  
+  button[mat-raised-button][disabled] {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+  }

@@ -1,0 +1,56 @@
+.about-section {
+  padding: 40px;
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+.text-card {
+  width: 100%;
+  padding: 16px;
+  background-color: #ffffff;
+  color: #000000 !important;
+}
+
+.image-card {
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+img[mat-card-image] {
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #000000 !important;
+}
+
+p {
+  color: #000000 !important;
+  margin-bottom: 24px;
+}
+
+.highlight {
+  color: #26a69a;
+}
+
+mat-list-item {
+  color: #000000 !important;
+  margin-bottom: 12px;
+}
+mat-list-item strong {
+  color: #000000 !important;
+}
+mat-list-item span {
+  color: #000000 !important;
+}
+
+@media (max-width: 768px) {
+  mat-grid-list {
+    cols: 1 !important;
+  }
+}/*# sourceMappingURL=about.component.css.map */
